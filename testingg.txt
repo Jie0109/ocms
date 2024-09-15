@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Overlay</title>
+  <style>
+    body {
+      text-align: center;
+      padding: 20px;
+    }
+
+    #imageContainer {
+      position: relative;
+      display: inline-block;
+    }
+
+    #baseImage {
+      max-width: 100%;
+      height: auto;
+    }
+
+    #uploadImage {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="imageContainer">
+    <img id="baseImage" src="base_image.jpg" alt="Base Image">
+  </div>
+  <input type="file" id="uploadImage" accept="image/*">
+
+  <script>
+    const baseImage = document.getElementById('baseImage');
+    const uploadImageInput = document.getElementById('uploadImage');
+
+    uploadImageInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const uploadedImage = new Image();
+          uploadedImage.src = e.target.result;
+          uploadedImage.onload = function () {
+            const canvas = document.createElement('canvas');
+            canvas.width = baseImage.width;
+            canvas.height = baseImage.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(baseImage, 0, 0, baseImage.width, baseImage.height);
+            ctx.drawImage(uploadedImage, 0, 0, baseImage.width, baseImage.height);
+            baseImage.src = canvas.toDataURL('image/jpeg');
+          };
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
