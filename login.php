@@ -11,7 +11,7 @@ $email_err = $password_err = $login_err = "";
             // RECAPTCHA SETTINGS
             $captcha = $_POST['g-recaptcha-response'];
             $ip = $_SERVER['REMOTE_ADDR'];
-            $key = '6LcVihEpAAAAABRob1H40oIPFg7W0IdO-RhECKZw';
+            $key = 'your_secretKey';
             $url = 'https://www.google.com/recaptcha/api/siteverify';
 
             // RECAPTCH RESPONSE
