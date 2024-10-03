@@ -1,0 +1,1 @@
+An online clothing management system with integrated data analytics. It offers unique features, such as allowing users to upload custom graphics. The admin panel enables administrators to monitor key data, including stock levels, active users, orders, and more.
